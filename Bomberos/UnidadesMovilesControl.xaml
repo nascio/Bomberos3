@@ -1,0 +1,342 @@
+﻿<UserControl x:Class="Bomberos.UnidadesMovilesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:BLL="clr-namespace:Bomberos.BLL;assembly=Bomberos.BLL"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Bomberos"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="wkme"
+             d:DesignHeight="362"
+             d:DesignWidth="616"
+             Background="#33ffffff"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <BlurEffect x:Key="blurKey" x:Shared="False" />
+
+        <Grid x:Key="nuevoKey"
+              Width="320"
+              Height="220"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              x:Shared="False"
+              Background="Transparent"
+              FocusManager.FocusedElement="{Binding ElementName=ffff}"
+              KeyboardNavigation.ControlTabNavigation="Cycle"
+              KeyboardNavigation.DirectionalNavigation="Cycle"
+              KeyboardNavigation.TabNavigation="Cycle">
+
+            <Border Margin="5"
+                    Background="White"
+                    CornerRadius="15"
+                    Effect="{DynamicResource blurKey}" />
+
+            <Border Margin="-5"
+                    BorderBrush="Black"
+                    BorderThickness="5"
+                    CornerRadius="15" />
+
+            <Border Margin="-5"
+                    BorderBrush="Red"
+                    BorderThickness="5"
+                    CornerRadius="15"
+                    Effect="{DynamicResource blurKey}" />
+
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="65" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.ColumnSpan="3"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Text="Nuevo registro"
+                           TextAlignment="Center" />
+                <TextBlock Grid.Row="2" Text="Numero:" />
+                <TextBlock Grid.Row="4" Text="Placa:" />
+
+
+                <TextBox x:Name="ffff"
+                         Grid.Row="2"
+                         Grid.Column="2"
+                         CharacterCasing="Upper"
+                         Text="{Binding Actual.Numero, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Center" />
+                <TextBox Grid.Row="4"
+                         Grid.Column="2"
+                         CharacterCasing="Upper"
+                         Text="{Binding Actual.Placa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Center" />
+                <Button Grid.Row="6"
+                        Grid.Column="2"
+                        Padding="15,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding EditarNuevoCMD}"
+                        Content="Aceptar" />
+            </Grid>
+
+            <Button Width="32"
+                    Height="32"
+                    Margin="0,-18,-16,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Command="{Binding QuitarCMD}"
+                    IsCancel="True"
+                    IsTabStop="False"
+                    ToolTip="Cancelar">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Ellipse Width="32"
+                                 Height="32"
+                                 Fill="Red" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </Grid>
+
+        <Grid x:Key="editarKey"
+              Width="320"
+              Height="300"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              x:Shared="False"
+              Background="Transparent"
+              FocusManager.FocusedElement="{Binding ElementName=ffff}"
+              KeyboardNavigation.ControlTabNavigation="Cycle"
+              KeyboardNavigation.DirectionalNavigation="Cycle"
+              KeyboardNavigation.TabNavigation="Cycle">
+
+            <Border Margin="5"
+                    Background="White"
+                    CornerRadius="15"
+                    Effect="{DynamicResource blurKey}" />
+
+            <Border Margin="-5"
+                    BorderBrush="Black"
+                    BorderThickness="5"
+                    CornerRadius="15" />
+
+            <Border Margin="-5"
+                    BorderBrush="Red"
+                    BorderThickness="5"
+                    CornerRadius="15"
+                    Effect="{DynamicResource blurKey}" />
+
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="7" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="65" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.ColumnSpan="3"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Text="Editar registro"
+                           TextAlignment="Center" />
+                <TextBlock Grid.Row="2" Text="Codigo:" />
+                <TextBlock Grid.Row="4" Text="Numero:" />
+                <TextBlock Grid.Row="6" Text="Placa:" />
+                <TextBlock Grid.Row="8" Text="Estado:" />
+
+
+                <TextBox Grid.Row="2"
+                         Grid.Column="2"
+                         IsReadOnly="True"
+                         IsReadOnlyCaretVisible="True"
+                         Text="{Binding Actual.ID, Mode=OneWay}"
+                         TextAlignment="Center" />
+                <TextBox Grid.Row="4"
+                         Grid.Column="2"
+                         CharacterCasing="Upper"
+                         Text="{Binding Actual.Numero, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Center" />
+                <TextBox Grid.Row="6"
+                         Grid.Column="2"
+                         CharacterCasing="Upper"
+                         Text="{Binding Actual.Placa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Center" />
+                <Button Grid.Row="9"
+                        Grid.Column="2"
+                        Padding="15,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding EditarNuevoCMD}"
+                        Content="Aceptar" />
+                <ToggleButton Grid.Row="8"
+                              Grid.Column="2"
+                              Padding="1,5">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse x:Name="re"
+                                         Width="20"
+                                         Height="20"
+                                         Fill="Green" />
+                                <TextBlock x:Name="txt"
+                                           Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="Habilitado" />
+                            </StackPanel>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="False">
+                                    <Setter TargetName="re" Property="Fill" Value="Red" />
+                                    <Setter TargetName="txt" Property="Text" Value="No disponible" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+            </Grid>
+
+
+            <Button Width="32"
+                    Height="32"
+                    Margin="0,-18,-16,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Command="{Binding QuitarCMD}"
+                    IsCancel="True"
+                    IsTabStop="False"
+                    ToolTip="Cancelar">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Ellipse Width="32"
+                                 Height="32"
+                                 Fill="Red" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </Grid>
+
+    </UserControl.Resources>
+
+
+    <UserControl.DataContext>
+        <BLL:MVUnidadMovil />
+    </UserControl.DataContext>
+
+
+    <Grid x:Name="f">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid AlternatingRowBackground="#FFCDCDCD"
+                  AlternationCount="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  ItemsSource="{Binding Coleccion}"
+                  MinRowHeight="33"
+                  SelectedItem="{Binding Seleccion}">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn CanUserSort="True"
+                                        Header="Codigo"
+                                        SortMemberPath="ID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Grid.Column="1"
+                                       Margin="5"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding ID}"
+                                       TextAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn CanUserSort="True"
+                                        Header="Numero de la unidad"
+                                        SortMemberPath="Numero">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Grid.Column="1"
+                                       Margin="5,5,15,5"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Numero}"
+                                       TextAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*"
+                                        CanUserSort="True"
+                                        Header="Placa"
+                                        SortMemberPath="Nombre">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="5"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Placa}"
+                                       TextTrimming="CharacterEllipsis"
+                                       ToolTip="{Binding Placa}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <StackPanel Grid.Column="2">
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Command="{Binding ActualizarListaCMD, Mode=OneWay}"
+                    Content="Actualizar" />
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Click="btnNuevo_Click"
+                    Content="Nuevo" />
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Click="btnEditar_Click"
+                    Content="Editar" />
+
+
+        </StackPanel>
+
+        <Grid x:Name="grdNuevoContenido"
+              Grid.ColumnSpan="3"
+              Background="#BF000000"
+              Visibility="Collapsed" />
+
+
+    </Grid>
+</UserControl>

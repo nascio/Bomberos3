@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Bomberos.TipoIncidentesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:BLL="clr-namespace:Bomberos.BLL;assembly=Bomberos.BLL"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Bomberos"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="wkme"
+             d:DesignHeight="362"
+             d:DesignWidth="616"
+             Background="#33ffffff"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <BLL:MVTipoIncidentes />
+    </UserControl.DataContext>
+
+    <Grid x:Name="f">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <DataGrid AlternatingRowBackground="#FFCDCDCD"
+                  AlternationCount="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeRows="False"
+                  ItemsSource="{Binding Incidentes}"
+                  MinRowHeight="33"
+                  SelectedItem="{Binding Seleccion}">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn CanUserSort="True"
+                                        Header="Codigo"
+                                        SortMemberPath="ID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Path x:Name="txt"
+                                      Width="16"
+                                      Height="20"
+                                      Margin="5"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="M8,28L8,20A1,1,0,1,1,48,20L48,28 51,28Q56,28,56,33L56,63Q56,68,51,68L5,68Q0,68,0,63L0,33Q0,28,5,28L8,28 M16,28L16,20A1,1,0,1,1,40,20L40,28 16,28"
+                                      Fill="Black"
+                                      Stretch="Fill"
+                                      Visibility="Collapsed" />
+
+                                <TextBlock Grid.Column="1"
+                                           Margin="5"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding ID}"
+                                           TextAlignment="Right" />
+                            </Grid>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Bloqueado}" Value="True">
+                                    <Setter TargetName="txt" Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*"
+                                        CanUserSort="True"
+                                        Header="Descripcion"
+                                        SortMemberPath="Nombre">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="5"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Nombre}"
+                                       TextTrimming="CharacterEllipsis"
+                                       ToolTip="{Binding Nombre}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <StackPanel Grid.Column="2">
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Command="{Binding ActualizarListaCMD, Mode=OneWay}"
+                    Content="Actualizar" />
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Command="{Binding ActualizarListaCMD, Mode=OneWay}"
+                    Content="Nuevo" />
+            <Button Margin="0,0,0,5"
+                    Padding="5,10"
+                    Command="{Binding EliminarCMD, Mode=OneWay}"
+                    Content="Eliminar" />
+
+
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

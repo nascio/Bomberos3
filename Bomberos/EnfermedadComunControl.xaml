@@ -1,0 +1,881 @@
+﻿<UserControl x:Class="Bomberos.EnfermedadComunControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:bll="clr-namespace:Bomberos.BLL;assembly=Bomberos.BLL"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Bomberos"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="1030"
+             d:DesignWidth="840"
+             Background="White"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="White" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style x:Key="titulos" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <DataTemplate x:Key="PlantillaUnidadMovilKey">
+            <TextBlock x:Name="txt" Padding="0,5">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="Unidad # {0}, - Placa: {1}">
+                        <Binding Path="Numero" />
+                        <Binding Path="Placa" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Numero}" Value="0">
+                    <Setter TargetName="txt" Property="Text" Value="Sin seleccionar" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="PlantillaBomberoKey">
+
+            <TextBlock Padding="0,5">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="Nombre" />
+                        <Binding Path="Apellido" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+        </DataTemplate>
+
+
+
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <bll:Modelo1 />
+    </UserControl.DataContext>
+
+
+
+    <!--  Background="#33ff0000"  -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.RowSpan="2"
+                   Width="100"
+                   MouseEnter="Image_MouseEnter"
+                   Source="Resources/logo-completo-png.png" />
+            <TextBlock Grid.Column="2"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Text="BENEMERITO CUERPO VOLUNTARIO DE BOMBEROS DE GUATEMALA"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="2"
+                       FontSize="24"
+                       TextAlignment="Center">
+                REPORTE DE AMBULANCIA<LineBreak />
+                (Servicios enfermedad común)</TextBlock>
+        </Grid>
+        <ScrollViewer Grid.Row="2" Padding="20">
+
+            <Grid Grid.Row="2" TextElement.FontSize="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="200" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Padding="0,5"
+                           VerticalAlignment="Center"
+                           LineHeight="9"
+                           LineStackingStrategy="BlockLineHeight"
+                           TextAlignment="Right">
+                    Fecha:<LineBreak /><Span FontSize="10">(dd/mm/yyyy)</Span>
+                </TextBlock>
+                <Border Grid.Column="2"
+                        Background="White"
+                        BorderBrush="{Binding Path=BorderBrush, ElementName=dpkrFecha}"
+                        BorderThickness="1" />
+
+                <DatePicker x:Name="dpkrFecha"
+                            Grid.Column="2"
+                            Height="26"
+                            Margin="0,2,366,2"
+                            VerticalAlignment="Center"
+                            BorderThickness="0"
+                            SelectedDate="{Binding Fecha, StringFormat=dd - mm - yyyy}" />
+
+                <Grid Grid.Row="3"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Hora:" />
+                    <TextBox Grid.Column="2"
+                             Width="150"
+                             Text="{Binding HoraSalida, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}"
+                             TextAlignment="Center" />
+                    <TextBlock Grid.Column="4"
+                               Text="Salida de:"
+                               TextAlignment="Right" />
+                    <TextBox Grid.Column="6"
+                             MinWidth="300"
+                             Text="{Binding LugarSalida, Mode=TwoWay}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Informacion de salida" />
+                </Grid>
+                <Grid Grid.Row="5" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Informacion de entrada" />
+                </Grid>
+                <Grid Grid.Row="6"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Hora:" />
+                    <TextBox Grid.Column="2"
+                             Width="150"
+                             Text="{Binding HoraEntrada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:hh\\:mm\}}"
+                             TextAlignment="Center" />
+                    <TextBlock Grid.Column="4" Text="Entrada de:" />
+                    <TextBox Grid.Column="6"
+                             MinWidth="300"
+                             Text="{Binding LugarEntrada, Mode=TwoWay}" />
+                </Grid>
+
+                <TextBlock Grid.Row="8"
+                           Text="Dirección:"
+                           TextAlignment="Right" />
+                <TextBox Grid.Row="8"
+                         Grid.Column="2"
+                         Text="{Binding Path=Direccion, Mode=TwoWay}" />
+
+
+
+
+
+
+
+                <Grid Grid.Row="10" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Informacion de solicitante(s)" />
+                </Grid>
+
+                <StackPanel Grid.Row="11"
+                            Grid.ColumnSpan="3"
+                            VerticalAlignment="Top">
+
+                    <Grid Margin="20,0,20,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Nombre el solicitante:" />
+                        <TextBox Grid.Column="2" Text="{Binding SolicitantePrincipal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Grid.Column="4"
+                                Padding="20,5"
+                                Command="{Binding CmdAgregarSolicitante}"
+                                Content="+"
+                                ToolTip="Para agregar mas solicitantes, en caso de haberlos." />
+                    </Grid>
+
+
+                    <ItemsControl ItemsSource="{Binding Solicitantes}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="25,0,20,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Text="Nombre el solicitante:" />
+                                    <TextBox Grid.Column="2" Text="{Binding Nombre, Mode=TwoWay}" />
+                                    <Button Grid.Column="4"
+                                            Padding="20,5"
+                                            Command="{Binding QuitarSolicitante, Mode=OneWay}"
+                                            Content="-"
+                                            ToolTip="Quita este solicitante." />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <Grid Grid.Row="13" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Informacion de los paciente(s)" />
+                </Grid>
+
+
+                <StackPanel Grid.Row="14"
+                            Grid.ColumnSpan="3"
+                            VerticalAlignment="Top">
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.RowSpan="7"
+                                Grid.ColumnSpan="11"
+                                Margin="-2"
+                                Background="#FFCBC3C3"
+                                CornerRadius="5" />
+
+                        <TextBlock Text="Nombre completo del paciente:" />
+                        <TextBox Grid.Column="2" Text="{Binding PacientePrincipal.Nombre, Mode=TwoWay}" />
+
+                        <ToggleButton Grid.Column="4"
+                                      Content="Fallecido?"
+                                      IsChecked="{Binding PacientePrincipal.Estado}" />
+
+                        <TextBlock Grid.Column="6" Text="Edad:" />
+                        <TextBox Grid.Column="8"
+                                 MinWidth="100"
+                                 Text="{Binding Path=PacientePrincipal.Edad, Mode=TwoWay}" />
+
+                        <Button Grid.Column="10"
+                                Padding="10,5"
+                                Command="{Binding CmdAgregarPaciente}"
+                                Content="+" />
+
+
+                        <Grid Grid.Row="2"
+                              Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
+                              Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="            Causa:" />
+                            <TextBox Grid.Column="2"
+                                     Width="400"
+                                     HorizontalAlignment="Stretch"
+                                     Text="{Binding PacientePrincipal.Causa, Mode=TwoWay}" />
+                        </Grid>
+
+                        <Grid Grid.Row="4"
+                              Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
+                              Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="       Domicilio:" />
+                            <TextBox Grid.Column="2"
+                                     Width="400"
+                                     HorizontalAlignment="Stretch"
+                                     Text="{Binding PacientePrincipal.Domicilio, Mode=TwoWay}" />
+                        </Grid>
+
+                        <Grid Grid.Row="6"
+                              Grid.ColumnSpan="11"
+                              HorizontalAlignment="Center"
+                              Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Acompañante:" />
+                            <TextBox Grid.Column="2"
+                                     Width="400"
+                                     HorizontalAlignment="Stretch"
+                                     Text="{Binding PacientePrincipal.Acompaniante, Mode=TwoWay}" />
+                        </Grid>
+
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Pacientes}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Border Grid.RowSpan="7"
+                                            Grid.ColumnSpan="11"
+                                            Margin="-2"
+                                            Background="#FFCBC3C3"
+                                            CornerRadius="5" />
+
+
+
+                                    <TextBlock Text="Nombre completo del paciente:" />
+                                    <TextBox Grid.Column="2" Text="{Binding Nombre, Mode=TwoWay}" />
+
+                                    <ToggleButton Grid.Column="4"
+                                                  Content="Fallecido?"
+                                                  IsChecked="{Binding Estado, Mode=TwoWay}" />
+
+                                    <TextBlock Grid.Column="6" Text="Edad:" />
+                                    <TextBox Grid.Column="8"
+                                             MinWidth="100"
+                                             Text="{Binding Edad, Mode=TwoWay}" />
+
+                                    <Button Grid.Column="10"
+                                            Padding="10,5"
+                                            Command="{Binding QuitarPaciente}"
+                                            Content="-" />
+
+
+                                    <Grid Grid.Row="2"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="            Causa:" />
+                                        <TextBox Grid.Column="2"
+                                                 Width="400"
+                                                 HorizontalAlignment="Stretch"
+                                                 Text="{Binding Causa, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="4"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="       Domicilio:" />
+                                        <TextBox Grid.Column="2"
+                                                 Width="400"
+                                                 HorizontalAlignment="Stretch"
+                                                 Text="{Binding Domicilio, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="6"
+                                          Grid.ColumnSpan="11"
+                                          HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Acompañante:" />
+                                        <TextBox Grid.Column="2"
+                                                 Width="400"
+                                                 HorizontalAlignment="Stretch"
+                                                 Text="{Binding Acompaniante, Mode=TwoWay}" />
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+                <Grid Grid.Row="16" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Informacion del personal voluntario" />
+                </Grid>
+                <StackPanel Grid.Row="17"
+                            Grid.ColumnSpan="3"
+                            VerticalAlignment="Top">
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Piloto:" />
+                        <ComboBox Grid.Column="2"
+                                  ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                                  ItemsSource="{Binding Bomberos}"
+                                  SelectedItem="{Binding AsignacionUnidadPrincipal.Bombero, Mode=TwoWay}" />
+
+                        <TextBlock Grid.Column="4" Text="Unidad:" />
+                        <ComboBox Grid.Column="6"
+                                  MinWidth="300"
+                                  ItemTemplate="{DynamicResource PlantillaUnidadMovilKey}"
+                                  ItemsSource="{Binding UnidadesMoviles}"
+                                  SelectedItem="{Binding AsignacionUnidadPrincipal.UnidadMovil, Mode=TwoWay}" />
+
+                        <Button Grid.Column="8"
+                                Padding="10,5"
+                                Command="{Binding CmdAgregaAsignacionUnidad}"
+                                Content="+" />
+
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding AsignacionesUnidades}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Text="Piloto:" />
+                                    <ComboBox Grid.Column="2"
+                                              ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                                              ItemsSource="{Binding Reporte.Bomberos}"
+                                              SelectedItem="{Binding Bombero, Mode=TwoWay}" />
+
+                                    <TextBlock Grid.Column="4" Text="Unidad:" />
+                                    <ComboBox Grid.Column="6"
+                                              MinWidth="300"
+                                              ItemTemplate="{DynamicResource PlantillaUnidadMovilKey}"
+                                              ItemsSource="{Binding Reporte.UnidadesMoviles}"
+                                              SelectedItem="{Binding UnidadMovil, Mode=TwoWay}" />
+
+                                    <Button Grid.Column="8"
+                                            Padding="10,5"
+                                            Command="{Binding QuitarAsignacionUnidad}"
+                                            Content="-" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+                <Grid Grid.Row="19" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Personal destacado" />
+                </Grid>
+                <StackPanel Grid.Row="20"
+                            Grid.ColumnSpan="3"
+                            VerticalAlignment="Top">
+
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Text="Bombero:" />
+                        <ComboBox Grid.Column="2"
+                                  ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                                  ItemsSource="{Binding Bomberos}"
+                                  SelectedItem="{Binding PrimerPersonalDestacado.Bombero}" />
+                        <TextBlock Grid.Column="4" Text="Valoracion:" />
+                        <Grid Grid.Column="6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Content="1"
+                                         GroupName="valoracion"
+                                         IsChecked="{Binding PrimerPersonalDestacado.UnaEstrellas, Mode=TwoWay}" />
+
+                            <RadioButton Grid.Column="1"
+                                         HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Content="2"
+                                         GroupName="valoracion"
+                                         IsChecked="{Binding PrimerPersonalDestacado.DosEstrellas, Mode=TwoWay}" />
+                            <RadioButton Grid.Column="2"
+                                         HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Content="3"
+                                         GroupName="valoracion"
+                                         IsChecked="{Binding PrimerPersonalDestacado.TresEstrellas, Mode=TwoWay}" />
+                            <RadioButton Grid.Column="3"
+                                         HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Content="4"
+                                         GroupName="valoracion"
+                                         IsChecked="{Binding PrimerPersonalDestacado.CuatroEstrellas, Mode=TwoWay}" />
+                            <RadioButton Grid.Column="4"
+                                         HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Content="5"
+                                         GroupName="valoracion"
+                                         IsChecked="{Binding PrimerPersonalDestacado.CincoEstrellas, Mode=TwoWay}" />
+
+                        </Grid>
+
+                        <Button Grid.Column="8"
+                                Padding="10,5"
+                                Command="{Binding CmdPersonalDestacado}"
+                                Content="+" />
+
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding PersonalDestacado}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Text="Bombero:" />
+                                    <ComboBox Grid.Column="2"
+                                              ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                                              ItemsSource="{Binding Reporte.Bomberos}"
+                                              SelectedItem="{Binding Bombero}" />
+                                    <TextBlock Grid.Column="4" Text="Valoracion:" />
+                                    <Grid Grid.Column="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton HorizontalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     Content="1"
+                                                     GroupName="{Binding Grupo}"
+                                                     IsChecked="{Binding UnaEstrellas, Mode=TwoWay}" />
+
+                                        <RadioButton Grid.Column="1"
+                                                     HorizontalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     Content="2"
+                                                     GroupName="{Binding Grupo}"
+                                                     IsChecked="{Binding DosEstrellas, Mode=TwoWay}" />
+                                        <RadioButton Grid.Column="2"
+                                                     HorizontalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     Content="3"
+                                                     GroupName="{Binding Grupo}"
+                                                     IsChecked="{Binding TresEstrellas, Mode=TwoWay}" />
+                                        <RadioButton Grid.Column="3"
+                                                     HorizontalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     Content="4"
+                                                     GroupName="{Binding Grupo}"
+                                                     IsChecked="{Binding CuatroEstrellas, Mode=TwoWay}" />
+                                        <RadioButton Grid.Column="4"
+                                                     HorizontalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     Content="5"
+                                                     GroupName="{Binding Grupo}"
+                                                     IsChecked="{Binding CincoEstrellas, Mode=TwoWay}" />
+
+                                    </Grid>
+
+                                    <Button Grid.Column="8"
+                                            Padding="10,5"
+                                            Command="{Binding QuitarPersonalDestacado}"
+                                            Content="-" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+                <TextBlock Grid.Row="22" Text="Observaciones:" />
+                <TextBox Grid.Row="22"
+                         Grid.Column="2"
+                         MinHeight="120"
+                         MaxHeight="120"
+                         Text="{Binding Observaciones}"
+                         TextWrapping="Wrap" />
+                <Grid Grid.Row="24" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <Border Grid.Column="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="#FF5F5F5F"
+                            BorderThickness="0,2,0,0" />
+                    <TextBlock Grid.Column="1" Text="Responsables del reporte" />
+                </Grid>
+                <TextBlock Grid.Row="25" Text="Formulado por:" />
+                <TextBlock Grid.Row="27" Text="Piloto:" />
+                <TextBlock Grid.Row="29" Text="Jefe de servicios:" />
+                <TextBlock Grid.Row="31" Text="Secretario(a):" />
+
+                <ComboBox Grid.Row="25"
+                          Grid.Column="2"
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding FormuladoPor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Row="27"
+                          Grid.Column="2"
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding Piloto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Row="29"
+                          Grid.Column="2"
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding JefeServicios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Row="31"
+                          Grid.Column="2"
+                          ItemTemplate="{DynamicResource PlantillaBomberoKey}"
+                          ItemsSource="{Binding Bomberos}"
+                          SelectedItem="{Binding Secretario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+
+
+
+
+
+
+            </Grid>
+        </ScrollViewer>
+        <Button Width="84"
+                Height="33"
+                Margin="734,68,22,47"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Command="{Binding AgregarCMD}"
+                Content="Guardar" />
+
+    </Grid>
+</UserControl>
