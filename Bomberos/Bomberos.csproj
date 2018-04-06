@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Informes.xaml.cs">
+      <DependentUpon>Informes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MaternidadControl.xaml.cs">
       <DependentUpon>MaternidadControl.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,10 @@
     <Compile Include="UnidadesMovilesControl.xaml.cs">
       <DependentUpon>UnidadesMovilesControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Informes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MaternidadControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,6 +169,10 @@
     <ProjectReference Include="..\Bomberos.BLL\Bomberos.BLL.csproj">
       <Project>{5cebfc0a-8562-49f2-9520-e4f4343c7703}</Project>
       <Name>Bomberos.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bomberos.DAL\Bomberos.DAL.csproj">
+      <Project>{EC393F88-4995-4172-89F1-51A6BD158C42}</Project>
+      <Name>Bomberos.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

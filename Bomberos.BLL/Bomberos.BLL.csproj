@@ -33,11 +33,10 @@
     <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +54,7 @@
     <Compile Include="Excepciones\NoSePudoIngresarException.cs" />
     <Compile Include="Excepciones\NoSePuedeEliminarException.cs" />
     <Compile Include="Excepciones\SinConexionException.cs" />
+    <Compile Include="Informes\Informe.cs" />
     <Compile Include="Modelo1.cs" />
     <Compile Include="Modelo\MVPrincipal.cs" />
     <Compile Include="Modelo\MVBombero.cs" />
@@ -67,13 +67,13 @@
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bomberos.DAL\Bomberos.DAL.csproj">
-      <Project>{ec393f88-4995-4172-89f1-51a6bd158c42}</Project>
-      <Name>Bomberos.DAL</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Bomberos.DAL\Bomberos.DAL.csproj">
+      <Project>{EC393F88-4995-4172-89F1-51A6BD158C42}</Project>
+      <Name>Bomberos.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

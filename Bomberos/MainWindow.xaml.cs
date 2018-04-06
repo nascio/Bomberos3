@@ -128,7 +128,7 @@ namespace Bomberos {
         private void generacionDeInformes_Click ( ) {
             this.contenido.Children.Clear ( );
 
-            var n = new ReporteControl ( ) {
+            var n = new Informes ( ) {
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalAlignment = HorizontalAlignment.Stretch
             };
